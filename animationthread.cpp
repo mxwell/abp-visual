@@ -61,6 +61,7 @@ void AnimationThread::run()
         prev = 0;
         cur = 1;
         if (!processLine(data[prev])) {
+            prev = cur = -1;
             finish_reached();
             return;
         }
@@ -68,10 +69,11 @@ void AnimationThread::run()
         std::swap(prev, cur);
     }
     if (!processLine(data[cur])) {
+        prev = cur = -1;
         finish_reached();
         return;
     }
-    msleep(20);
+    msleep(30);
     next_frame_ready();
 }
 

@@ -24,6 +24,11 @@ private slots:
 
 private:
     QCustomPlot *plot;
+    QCustomPlot *speedPlot;
+    double tMax;
+    double speedMax;
+    QVector<double> tData;
+    QVector<double> speedData;
     QPushButton *fileOpenButton;
     QPushButton *controlButton;
     QFile *logFile;
@@ -37,6 +42,12 @@ private:
     bool particle_cross_boundaries(const std::pair<double, double>& prev,
                                    const std::pair<double, double>& cur);
     double sqr(const double& x) { return x * x; }
+    void draw_segment(int id, const QColor &color,
+                      const double &ax, const double &ay,
+                      const double &bx, const double &by);
+    void make_rainbow();
+    const QColor colorFromAngle(const double &angle);
+    void resetSpeedPlot();
 };
 
 #endif // MAINWINDOW_H
